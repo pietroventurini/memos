@@ -1,0 +1,1 @@
+<p class="card-text">{{ $post->postable->description }}</p>

@@ -1,0 +1,52 @@
+######## STRUTTURA SITO ########
+/
+    Home page con bottoni login/registra e breve descrizione dell'app
+    - icone per cambiare lingua
+
+/login
+    Pagina di login con link a signup (re-indirizzare a link di provenienza)
+
+/signup
+    Pagina di registrazione con link a login
+
+/home
+    Bacheca con "i miei gruppi", pulsante "Crea/Unisciti ad un gruppo"
+
+/home/{group_id}
+    Pagina del gruppo, visualizzabile solo dai suoi membri (idem per tutto il sottoalbero)
+    - Bottone per aggiungere un membro
+    - Bottone per aggiungere un post (promemoria / lista della spesa)
+    - Elenco dei post (ordinabili per data scadenza/ultima modifica)
+
+
+
+
+######## API ########
+
+/v1/groups
+/v1/groups/{group_id}
+
+/v1/groups/{group_id}/users
+
+/v1/groups/{group_id}/memos
+/v1/groups/{group_id}/memos/{memo_id}
+
+/v1/users
+/v1/users/{user_id}
+
+
+
+
+###### NOTE ########
+Creo database con php artisan migrate
+
+in .env ho modificato APP_URL=http://localhost in http://localhost:8000 come
+indicato nella lezione 4 su auth (in modo che funzioni recupera password)
+
+I propri provider possono essere registrati e caricati in app/Providers/appServiceProvider.php
+come spiegato qui: https://laravel.com/docs/7.x/lifecycle#focus-on-service-providers
+
+Relazioni molti a molti: nome in ordine alfabetico (https://www.html.it/pag/55385/eloquent-e-le-relazioni-ii-parte/)
+
+in .env DB_PORT cambiata da 3306 in 8889 (nelle impostazioni di mamp e' possibile
+cambiare web server da 8888 a 80 e SQL da 8889 a 3306)
