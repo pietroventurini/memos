@@ -31,18 +31,21 @@
 
 <script type="application/javascript">
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
-    $('.done-checkbox').click(function(){
-        const postUrl = 'posts/' + this.dataset.id;
+    $('.done-checkbox').on('change', function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        const postUrl = window.location.href + '/posts/' + this.dataset.id;
         const types = {
             memo: "memo",
             shoplist: "shoplist"
         };
         //this.title = this.checked ? "__('home.post.done-tooltip')" : "__('home.post.todo-tooltip')"; riaggiungere parentesi graffe eventualmente
 
-        /*$.ajax({
+        console.log("Invio richiesta");
+        $.ajax({
             type: 'PUT',
             url: postUrl,
             dataType: 'json',
@@ -51,10 +54,10 @@
                 done: this.checked
             },
             success: function(response){
-                
+                console.log("successo");
             },
-        })*/
-        console.log("Invio richiesta")
+        });
+        
     });
 </script>
 

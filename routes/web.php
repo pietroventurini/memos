@@ -36,6 +36,9 @@ Route::post('/groups/{group}/update', 'GroupController@update')->name('groups.up
 Route::get('/users', 'UserController@getUserByIdOrEmail')->name('users.get');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 
+Route::put('/groups/{group}/posts/{post}', 'PostController@update')->name('posts.update');
+
+
 /* COSE AGGIUNTE DA ME 
 Route::get('/home', 'HomeController@index')->name('home');
 equivale a 
