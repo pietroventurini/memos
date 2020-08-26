@@ -31,12 +31,20 @@ Route::resource('/groups', 'GroupController', [
                     'except' => ['update'] //rimuovere dalle esclusioni le azioni che ci servono e aggiungerle al controller
                     ]);
 Route::post('/groups/{group}/update', 'GroupController@update')->name('groups.update'); //in realta esiste gia update generato da resource (PUT)
-//Route::get('/groups/{group_id}/destroy', 'GroupController@destroy')->name('groups.destroy'); //in realta esiste gia destroy generato da resource (DELETE)
 
 Route::get('/users', 'UserController@getUserByIdOrEmail')->name('users.get');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 
+//Route::get('/groups/{group}/posts/{post}', 'PostController@show')->name('posts.show');
+//Route::resource('groups.posts', 'PostController')->except(['index','edit','create']);
 Route::put('/groups/{group}/posts/{post}', 'PostController@update')->name('posts.update');
+Route::delete('/groups/{group}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
+Route::get('/groups/{group}/posts/create', 'PostController@create')->name('groups.posts.create');
+Route::post('/groups/{group}/posts/memos', 'MemoController@store')->name('memos.store');
+
+
+
 
 
 /* COSE AGGIUNTE DA ME 

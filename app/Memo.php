@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Memo extends Model
 {
     protected $table = 'memo';
-
+    public $timestamps = false;
     protected $fillable = ['description'];
 
 

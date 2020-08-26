@@ -12,6 +12,7 @@ return [
     |
     */  
 
+    'cancel' => 'Annulla',
     'create' => 'Crea',
     'delete' => 'Elimina',
     'description' => 'Descrizione',
@@ -44,10 +45,23 @@ return [
 
     'post' => [
         'creator' => 'Creato da',
+        'deleted' => 'Il post è stato eliminato',
         'expires' => 'Scadenza',
+        'forbidden' => "L'utente non è il creatore del post",
         'done-tooltip' => 'Contrassegna come completato',
         'todo-tooltip' => 'Contrassegna come non completato',
+        'not-found' => 'Post non trovato',
+        'title' => 'Titolo',
     ],
+
+    'memo' => [
+        'create' => 'Crea un nuovo memo',
+    ],
+
+    'shoplist' => [
+        'create' => 'Crea una nuova lista della spesa',
+    ],
+
 
     'remove' => 'Rimuovi',
     

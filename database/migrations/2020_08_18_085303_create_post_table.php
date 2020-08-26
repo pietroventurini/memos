@@ -21,8 +21,8 @@ class CreatePostTable extends Migration
             $table->boolean('done')->default(false);
             $table->dateTime('expires_at');
             $table->timestamps();
-            $table->integer('postable_id')->unsigned();
-            $table->string('postable_type');
+            $table->integer('postable_id')->unsigned()->nullable();
+            $table->string('postable_type')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('group')->onDelete('cascade');
         });

@@ -1,6 +1,23 @@
 <div class="col mb-4" class="post-card">
     <div class="card">
-        <h5 class="card-header">{{ $post->title }} ({{$post->postable_type}})</h5>
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h5>{{ $post->title }} ({{$post->postable_type}})</h5>
+                </div>
+                @if($post->user_id == Auth::user()->id)
+                <div class="col-3 text-right">
+                    <button class="btn btn-light destroy-btn" data-id="{{$post->id}}">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                        </svg>
+                    </button>
+                </div>
+                @endif
+            </div>
+        </div>
+        
+        
         <div class="card-body">
             @if($post->postable_type == 'App\Memo')
                 @include('post.memo')
@@ -44,7 +61,6 @@
         };
         //this.title = this.checked ? "__('home.post.done-tooltip')" : "__('home.post.todo-tooltip')"; riaggiungere parentesi graffe eventualmente
 
-        console.log("Invio richiesta");
         $.ajax({
             type: 'PUT',
             url: postUrl,
@@ -53,6 +69,21 @@
                 type: types.memo,
                 done: this.checked
             },
+            success: function(response){
+                console.log("successo");
+            },
+        });
+        
+    });
+
+    $('.destroy-btn').on('click', function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        const postUrl = window.location.href + '/posts/' + this.dataset.id;
+        $.ajax({
+            type: 'DELETE',
+            url: postUrl,
+            dataType: 'json',
             success: function(response){
                 console.log("successo");
             },

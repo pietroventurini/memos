@@ -12,6 +12,7 @@ return [
     |
     */
 
+    'cancel' => 'Cancel',
     'create' => 'Create',
     'delete' => 'Delete',
     'description' => 'Description',
@@ -44,9 +45,21 @@ return [
 
     'post' => [
         'creator' => 'Created by',
+        'deleted' => 'Post has been deleted',
         'expires' => 'Expires on',
+        'forbidden' => 'User is not the creator of the post',
         'todo-tooltip' => 'Mar as to-do',
         'done-tooltip' => 'Mark as done',
+        'not-found' => 'Post not found',
+        'title' => 'Title'
+    ],
+
+    'memo' => [
+        'create' => 'Create a new memo',
+    ],
+
+    'shoplist' => [
+        'create' => 'Create a new shopping list',
     ],
 
     'remove' => 'Remove',
