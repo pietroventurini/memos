@@ -6,7 +6,9 @@
 
 @section('specific_data') 
 
-<table class="table table-hover table-striped" id="items_table">
+<div class="form-group">
+    <label for="items_table">{{__('home.shoplist.items-available')}}</label>
+    <table class="table table-hover" id="items_table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">{{ __('home.item.name') }}</th>
@@ -16,8 +18,7 @@
         </thead>
         <tbody>
             @foreach ($items as $item)
-                <tr id='row_{{$item->id}}'>
-                    <input type="hidden" name="items[]" value="{{$item->id}}" />
+                <tr id='{{$item->id}}'>
                     <td>{{ $item->name }}</td>
                     <td class="d-none d-sm-table-cell">{{$item->description}}</td>
                     <td>{{ $item->category->name }}</td>
@@ -25,5 +26,24 @@
             @endforeach
         </tbody>
     </table>
+</div>
+
+<div class="form-group">
+    <label for="shoplist_table">{{__('home.shoplist.items-selected')}}</label>
+    <table class="table table-hover" id="shoplist_table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">{{ __('home.item.name') }}</th>
+                <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.description') }}</th>
+                <th scope="col">{{ __('home.item.quantity') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
 
 @endsection
+
+
