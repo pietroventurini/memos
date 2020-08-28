@@ -4,6 +4,10 @@
 {{ __('home.memo.create') }}
 @endsection
 
+@section('store_route_name')
+'memo.store'
+@end_section
+
 @section('specific_data') 
 
 <div class="form-group">

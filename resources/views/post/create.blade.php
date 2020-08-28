@@ -8,9 +8,9 @@
             <div class="card">
                     <h5 class="card-header">@yield('title')</h5>
                     <div class="card-body">
-                        <form action="{{route('memos.store', ['group'=>$group_id])}}" method="POST">
+                        <form action="{{route(@yield('store_route_name'), ['group'=>$group_id])}}" method="POST">
                             @csrf
-                            <input type="hidden" id="type" name="type" value="memo">
+                            <input type="hidden" id="type" name="type" value="{{$type}}">
                             <div class="form-row">
                                 <div class="form-group col-md-6 mb-3">
                                     <label for="title">{{ __('home.post.title') }}</label>

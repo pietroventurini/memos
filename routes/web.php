@@ -42,6 +42,8 @@ Route::delete('/groups/{group}/posts/{post}', 'PostController@destroy')->name('p
 
 Route::get('/groups/{group}/posts/create', 'PostController@create')->name('groups.posts.create');
 Route::post('/groups/{group}/posts/memos', 'MemoController@store')->name('memos.store');
+Route::post('/groups/{group}/posts/shoplist', 'ShoplistController@store')->name('shoplist.store');
+
 
 
 

@@ -16,7 +16,7 @@ class PostController extends Controller
     }
 
     /**
-     * Handles put request to update post name, expiration date or done status
+     * Handles put request to update 'done status' of a post
      */
     public function update($group_id, $post_id, Request $request) {
         $post = Post::find($post_id);
@@ -69,10 +69,11 @@ class PostController extends Controller
         }
         $type = $request->input('type');
         if($type == 'memo')
-            return view('post/create/memo')->with(['group_id' => $group_id]);
+            return view('post/create/memo')->with(['group_id' => $group_id, 'type' => 'memo']);
         if ($type == 'shoplist')
             return view('post/create/shoplist')->with(['group_id' => $group_id,
-                                                        'items'=> Item::all()]);
+                                                        'items'=> Item::all(),
+                                                        'type' => 'shoplist']);
         // return bad formatting
             
     }

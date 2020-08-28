@@ -27,7 +27,7 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" language="javascript" src="{{ asset('js/itemsDataTable.js') }}"></script>
-    
+    <script type="text/javascript" src="{{ asset('js/bootstrap-input-spinner.js') }}"></script>
 </head>
 
 <body>
