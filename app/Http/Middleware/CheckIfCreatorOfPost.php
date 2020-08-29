@@ -20,9 +20,9 @@ class CheckIfCreatorOfPost
         $post_id = $request->route('post');
         $post = Post::find($post_id);
         if ($post == null)
-            return redirect()->route('groups.show', ['group' => $group_id])->withErrors(['msg'=> 'home.post.not-found'], 404); 
+            return redirect()->route('groups.show', ['group' => $group_id])->withErrors(['msg'=> __('home.post.not-found')], 404); 
         if($request->user()->id !== $post->user->id)
-            return redirect()->route('groups.show', ['group' => $group_id])->withErrors(['msg'=> 'home.post.forbidden'], 403); 
+            return redirect()->route('groups.show', ['group' => $group_id])->withErrors(['msg'=> __('home.post.forbidden')], 403); 
         return $next($request);
     }
 }

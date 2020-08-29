@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-//Route::get('/', 'FrontController@getHome');  //bianchini ha usato front controller
 Route::get('/', function () {
     return view('welcome');
 }); 
@@ -40,19 +38,10 @@ Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::put('/groups/{group}/posts/{post}', 'PostController@update')->name('posts.update');
 Route::delete('/groups/{group}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
-Route::get('/groups/{group}/posts/create', 'PostController@create')->name('groups.posts.create');
-Route::post('/groups/{group}/posts/memos', 'MemoController@store')->name('memos.store');
-Route::post('/groups/{group}/posts/shoplist', 'ShoplistController@store')->name('shoplist.store');
-
-
-
-
-
-
-/* COSE AGGIUNTE DA ME 
-Route::get('/home', 'HomeController@index')->name('home');
-equivale a 
-Route::get('/home', ['as' => 'home', 'uses' => 'HomeController'@])
-*/
+//Route::get('/groups/{group}/posts/create', 'PostController@create')->name('groups.posts.create');
+Route::get('/groups/{group}/posts/memos/create', 'MemoController@create')->name('groups.memos.create');
+Route::post('/groups/{group}/posts/memos', 'MemoController@store')->name('groups.memos.store');
+Route::get('/groups/{group}/posts/shoplists/create', 'ShoplistController@create')->name('groups.shoplists.create');
+Route::post('/groups/{group}/posts/shoplists', 'ShoplistController@store')->name('groups.shoplists.store');
 
 

@@ -17,7 +17,7 @@ class CheckIfAdminOfGroup
     {
         $group_id = $request->route('group');
         if(!$request->user()->isAdminOfGroup($group_id))
-            return redirect()->route('groups.show', ['group' => $group_id])->withErrors(['msg'=> 'home.forbidden.admin']); 
+            return redirect()->route('groups.show', ['group' => $group_id])->withErrors(['msg'=> __('home.forbidden.admin')]); 
         return $next($request);
     }
 }

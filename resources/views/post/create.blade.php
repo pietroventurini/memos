@@ -8,7 +8,7 @@
             <div class="card">
                     <h5 class="card-header">@yield('title')</h5>
                     <div class="card-body">
-                        <form action="{{route(@yield('store_route_name'), ['group'=>$group_id])}}" method="POST">
+                        <form action="@yield('store_route_name')" {{$type == 'shoplist' ? 'id=create-shoplist-form' : ''}} method="POST">
                             @csrf
                             <input type="hidden" id="type" name="type" value="{{$type}}">
                             <div class="form-row">
@@ -28,7 +28,7 @@
 
                             <div class="form-row float-right">
                                 <a class="btn btn-secondary mr-2" href="{{route('groups.show', ['group' => $group_id])}}" role="button"> {{__('home.cancel')}} </a>
-                                <button class="btn btn-primary mr-2" type="submit">{{__('home.create')}}</button>
+                                <button class="btn btn-primary mr-2"  type="submit">{{__('home.create')}}</button>
                             </div>
 
                         </form>

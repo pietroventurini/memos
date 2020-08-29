@@ -41,3 +41,15 @@
 input[type=checkbox].done-checkbox {
     transform: scale(2);
 }
+
+.list-group-scroll {
+	max-height: 300px;
+	margin-bottom: 10px;
+	overflow:scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+.item-disabled {
+	color:#acacac;
+	background-color: #fff;
+}

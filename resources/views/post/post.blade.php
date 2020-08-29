@@ -1,4 +1,4 @@
-<div class="col mb-4" class="post-card">
+<div class="col mb-4" class="post-card" id='post-{{$post->id}}'>
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -79,13 +79,15 @@
     $('.destroy-btn').on('click', function(event){
         event.stopPropagation();
         event.stopImmediatePropagation();
-        const postUrl = window.location.href + '/posts/' + this.dataset.id;
+        const postId = this.dataset.id;
+        const postUrl = window.location.href + '/posts/' + postId;
         $.ajax({
             type: 'DELETE',
             url: postUrl,
             dataType: 'json',
             success: function(response){
-                console.log("successo");
+                let post_id = '#post-' + postId;
+                $(post_id).remove();
             },
         });
         

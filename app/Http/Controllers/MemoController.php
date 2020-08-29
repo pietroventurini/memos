@@ -24,6 +24,6 @@ class MemoController extends Controller
 
     public function create(Request $request) {
         $group_id = $request->route('group');
-        return view('post/create')->with(['group_id' => $group_id]);
+        return view('post/create/memo')->with(['group_id' => $group_id, 'type' => 'memo']);
     }
 }

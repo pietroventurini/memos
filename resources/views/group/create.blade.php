@@ -10,7 +10,7 @@
 
                     <div class="card-body">
                         <!--preso da https://getbootstrap.com/docs/4.5/components/forms/#custom-styles-->
-                        <form class="needs-validation" novalidate action="{{ route('groups.store') }}" method="POST">
+                        <form class="needs-validation" action="{{ route('groups.store') }}" method="POST">
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
@@ -19,9 +19,7 @@
                                     <small id="nameHelpBlock" class="form-text text-muted">
                                         {{ __('home.form.name') }}.
                                     </small>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="validationCustom02">{{ __('home.description') }}</label>
@@ -29,24 +27,13 @@
                                     <small id="descHelpBlock" class="form-text text-muted">
                                         {{ __('home.form.description') }}.
                                     </small>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                    
                                 </div>
                             </div>
 
-                            <div class="form-row">
-                                <label for="validationCustom03"> {{ __('home.members') }} </label>
-                                <input type="text" class="form-control" id="validationCustom03" name="members[]" aria-describedby="memberHelpBlock">
-                                <small id="memberHelpBlock" class="form-text text-muted">
-                                        {{ __('home.form.newmember') }}.
-                                    </small>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
+                            
 
-                            <button class="btn btn-primary" type="submit">{{ __('home.create') }}</button>
+                            <button class="btn btn-primary float-right" type="submit">{{ __('home.create') }}</button>
                         </form>
                     </div>
 

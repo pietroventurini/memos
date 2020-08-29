@@ -21,7 +21,7 @@ class PostController extends Controller
     public function update($group_id, $post_id, Request $request) {
         $post = Post::find($post_id);
         if ($post === null) 
-            return response()->json(['message' => "Post not found"], 404);
+            return response()->json(['message' => __('home.post.not-found')], 404);
         if (!$request->has('done') || !$request->filled('done'))
             return response()->json(['message' => "Parameter 'done' is missing"], 400);
 
@@ -39,9 +39,9 @@ class PostController extends Controller
     public function destroy($group_id, $post_id, Request $request) {
         $post = Post::find($post_id);
         if ($post === null) 
-            return response()->json(['message' => "Post not found"], 404); //ripetizione, avviene anche nel middleware
+            return response()->json(['message' => __('home.post.not-found')], 404); //ripetizione, avviene anche nel middleware
         $post->delete();
-        return response()->json(['message' => "__('home.post.deleted')"], 200);
+        return response()->json(['message' => __('home.post.deleted')], 200);
     }
 
     public function show($group_id, $post_id, Request $request) {
@@ -61,7 +61,7 @@ class PostController extends Controller
         return $post;
     }
 
-    //FIXME
+    /*FIXME
     public function create(Request $request) {
         $group_id = $request->route('group');
         if(!$request->filled('type')) {
@@ -77,5 +77,6 @@ class PostController extends Controller
         // return bad formatting
             
     }
+    */
 
 }

@@ -60,8 +60,20 @@ return [
 
     'shoplist' => [
         'create' => 'Crea una nuova lista della spesa',
+        'items-available' => 'Elementi disponibili',
+        'items-selected' => 'Elementi selezionati',
     ],
 
+
+    'item' => [
+        'name' => 'Nome',
+        'description' => 'Descrizione',
+        'category' => 'Categoria',
+        'quantity' => 'Quantità',
+        'remove' => 'Rimuovi',
+        'tobuy-tooltip' => 'Contrassegna come da acquistare',
+        'bought-tooltip' => 'Contrassegna come già acquistato',
+    ],
 
     'remove' => 'Rimuovi',
     

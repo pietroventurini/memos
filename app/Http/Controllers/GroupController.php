@@ -37,7 +37,7 @@ class GroupController extends Controller
         // TODO aggiungere validazione dei campi !!!!
 
         if (!$request->filled('name'))
-            return redirect()->back()->withErrors(['msg'=> 'home.group.name.missing']);
+            return redirect()->back()->withErrors(['msg'=> __('home.group.name.missing')]);
 
         // Create group
         $user = User::find(auth()->id());
@@ -49,17 +49,19 @@ class GroupController extends Controller
         $user->groups()->attach($group, array('isAdmin' => true));
 
         // Add other members
-        foreach ($request->input('members') as $member_email) {
-            if ($member_email !== null) {
-                $member = User::where('email','like',$member_email)->first();
-                if ($member !== null)
-                    if (!$member->belongsToGroup($group->id))
-                        $member->groups()->attach($group, array('isAdmin' => false));
+        if($request->has('members')) {
+            foreach ($request->input('members') as $member_email) {
+                if ($member_email !== null) {
+                    $member = User::where('email','like',$member_email)->first();
+                    if ($member !== null)
+                        if (!$member->belongsToGroup($group->id))
+                            $member->groups()->attach($group, array('isAdmin' => false));
+                }
             }
         }
         
         // Redirect to group
-        return redirect()->route('groups.show', ['group' => $group->id]);
+        return redirect()->route('groups.edit', ['group' => $group->id]);
     }
 
     public function edit($group_id) {
@@ -123,6 +125,6 @@ class GroupController extends Controller
             return response()->json(['message' => "__('home.group.deleted')"], 200);
         }
         
-        return redirect()->back()->withErrors(['msg'=> "__('home.error.group')"]);
+        return redirect()->back()->withErrors(['msg'=> __('home.error.group')]);
     }
 }

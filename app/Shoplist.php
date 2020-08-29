@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shoplist extends Model
 {
     protected $table = 'shoplist';
-
+    public $timestamps = false;
     public function post()
     {
         return $this->morphOne(Post::class, 'postable');

@@ -21,11 +21,11 @@ class CheckIfBelongsToGroup
 
         // check if group exists
         if (!(Group::where('id', '=', $group_id)->exists()))
-            return redirect()->route('home')->withErrors(['msg'=> 'home.error.group']);
+            return redirect()->route('home')->withErrors(['msg'=> __('home.error.group')]);
             
         // check if user belongs to group
         if (!$request->user()->belongsToGroup($group_id))
-            return redirect()->route('home')->withErrors(['msg'=> 'home.forbidden.group']);        
+            return redirect()->route('home')->withErrors(['msg'=> __('home.forbidden.group')]);        
 
         return $next($request);
     }

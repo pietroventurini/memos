@@ -5,8 +5,8 @@
 @endsection
 
 @section('store_route_name')
-'memo.store'
-@end_section
+{{route('groups.memos.store', ['group'=>$group_id])}}
+@endsection
 
 @section('specific_data') 
 

@@ -60,6 +60,18 @@ return [
 
     'shoplist' => [
         'create' => 'Create a new shopping list',
+        'items-available' => 'Available items',
+        'items-selected' => 'Selected items',
+    ],
+
+    'item' => [
+        'name' => 'Name',
+        'description' => 'Description',
+        'category' => 'Category',
+        'quantity' => 'Quantity',
+        'remove' => 'Remove',
+        'tobuy-tooltip' => 'Mark as to buy',
+        'bought-tooltip' => 'Mark as bought',
     ],
 
     'remove' => 'Remove',

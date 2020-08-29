@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Memos') }}</title>
 
     
     <!-- Fonts -->
@@ -89,11 +89,10 @@
             @yield('content')
         </main>
 
-        <!-- si potrebbe temporizzare l'alert di errore in modo che scompaia da solo-->
         @if($errors->any())
             <div class="container text-center">
                 <div class="alert alert-size alert-warning alert-dismissible fade show" role="alert"> 
-                    <strong>Error:</strong> {{ __($errors->first()) }}
+                    <strong>Error:</strong> {{ $errors->first() }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -5,8 +5,8 @@
 @endsection
 
 @section('store_route_name')
-'shoplist.store'
-@end_section
+{{route('groups.shoplists.store', ['group'=>$group_id])}}
+@endsection
 
 @section('specific_data') 
 
