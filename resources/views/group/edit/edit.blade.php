@@ -58,14 +58,14 @@
                             </div>
 
 
-                            <button class="btn btn-primary float-right btn-lg" type="submit" name="submit" id="submit">
+                            <button class="btn btn-primary float-right btn-lg m-1" type="submit" name="submit" id="submit">
                                 {{ __('home.edit') }}
                             </button>
                         </form>
 
                         
-                        <button class="btn btn-danger float-right btn-lg" id="destroy"> {{__('home.delete')}} </button>
-                        <a class="btn btn-light float-right btn-lg" href="{{route('groups.show', ['group' => $group->id])}}" role="button"> {{__('home.cancel')}} </a>
+                        <button class="btn btn-danger float-right btn-lg m-1" id="destroy"> {{__('home.delete')}} </button>
+                        <a class="btn btn-secondary float-right btn-lg m-1" href="{{route('groups.show', ['group' => $group->id])}}" role="button"> {{__('home.cancel')}} </a>
 
                     </div>
 
@@ -94,7 +94,7 @@
             new_row += "<input type='hidden' name='members[]' value='" + member.id + "' />";
             new_row += "<td>" + member.name + "</td>";
             new_row += "<td class='d-none d-sm-table-cell'>" + member.email + "</td>";
-            new_row += "<td><button class='btn btn-outline-primary remove-btn' type='button'>";
+            new_row += "<td><button class='btn btn-outline-danger remove-btn' type='button'>";
             new_row += "<svg width='1em' height='1em' viewBox='0 0 16 16' class='bi bi-person-dash-fill' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>";
             new_row += "<path fill-rule='evenodd' d='M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5-.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z'/>";
             new_row += "</svg>";

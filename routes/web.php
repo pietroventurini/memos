@@ -43,5 +43,5 @@ Route::get('/groups/{group}/posts/memos/create', 'MemoController@create')->name(
 Route::post('/groups/{group}/posts/memos', 'MemoController@store')->name('groups.memos.store');
 Route::get('/groups/{group}/posts/shoplists/create', 'ShoplistController@create')->name('groups.shoplists.create');
 Route::post('/groups/{group}/posts/shoplists', 'ShoplistController@store')->name('groups.shoplists.store');
-
+Route::put('/groups/{group}/posts/shoplists/{shoplist}/checkItem', 'ShoplistController@checkItem')->name('groups.shoplists.checkItem');
 

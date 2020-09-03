@@ -34,7 +34,9 @@ class ShoplistController extends Controller
                 'shoplist_id' => $shoplist->id,
                 'user_id' => $user_id,
                 'quantity' => $quantity,
-                'checked' => '0'
+                'checked' => '0',
+                'created_at' => new \Datetime(),
+                'updated_at' => new \Datetime()
             ]);
         }
         return route('groups.show', ['group' => $group_id]);
@@ -45,5 +47,22 @@ class ShoplistController extends Controller
         return view('post/create/shoplist')->with(['group_id' => $group_id,
                                                     'items'=> Item::all(),
                                                     'type' => 'shoplist']);
+    }
+    
+
+    public function checkItem(Request $request) {
+        $group_id = $request->route('group');
+        $list_id = $request->route('shoplist');
+        $item_id = $request->filled('item_id') ? $request->input('item_id') : null;
+        if ($request->filled('checked'))
+            $checked = $request->input('checked') === 'true' ? '1' : '0';
+
+        if ($item_id == null || $checked == null)
+            return response()->json(['message' => 'Missing parameters'], 400);
+        
+        $shoplist = Shoplist::find($request->route('shoplist'));
+        $shoplist->items->find($item_id)->pivot->update(['checked' => $checked]);
+        
+        return response()->json(['message' => 'Checked status has been updated'], 200); 
     }
 }
