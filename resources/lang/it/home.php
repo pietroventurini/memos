@@ -31,6 +31,8 @@ return [
     ],
     'group' => [
         'create' => 'Crea un nuovo gruppo',
+        'delete' => 'Elimina gruppo',
+        'delete-msg' => 'Sei sicuro di voler eliminare',
         'deleted' => 'Il gruppo è stato eliminato',
         'name' => [
             'missing' => 'Non è stato scelto un nome per il gruppo'
@@ -45,6 +47,8 @@ return [
 
     'post' => [
         'creator' => 'Creato da',
+        'delete' => 'Elimina post',
+        'delete-msg' => 'Sei sicuro di voler eliminare questo post?',
         'deleted' => 'Il post è stato eliminato',
         'expires' => 'Scadenza',
         'forbidden' => "L'utente non è il creatore del post",

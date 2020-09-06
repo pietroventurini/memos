@@ -9,6 +9,12 @@ use App\User;
 
 class MemoController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('auth');
+        $this->middleware('group');
+    }
+    
     public function store(Request $request) {
         $group_id = $request->route('group');
         $post = app('App\Http\Controllers\PostController')->store($request);

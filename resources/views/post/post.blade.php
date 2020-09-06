@@ -1,13 +1,13 @@
 <div class="col mb-4" class="post-card" id='post-{{$post->id}}'>
-    <div class="card">
+    <div class="card {{$post->done ? 'bg-light text-muted' : 'bg-white'}}">
         <div class="card-header">
             <div class="row">
                 <div class="col">
-                    <h5>{{ $post->title }}</h5>
+                    <h5 class="post-title">{{ $post->title }}</h5>
                 </div>
                 @if($post->user_id == Auth::user()->id)
                 <div class="col-3 text-right">
-                    <button class="btn btn-light destroy-btn" data-id="{{$post->id}}">
+                    <button class="btn btn-transparent remove-post-btn" data-id="{{$post->id}}" data-toggle="modal" data-target="#delete-post-modal">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
                         </svg>
@@ -46,51 +46,75 @@
     </div>
 </div>
 
+
+
 <script type="application/javascript">
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
 
-    $('.done-checkbox').on('change', function(event){
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        const postUrl = window.location.href + '/posts/' + this.dataset.id;
-        const types = {
-            memo: "memo",
-            shoplist: "shoplist"
-        };
-        //this.title = this.checked ? "__('home.post.done-tooltip')" : "__('home.post.todo-tooltip')"; riaggiungere parentesi graffe eventualmente
-
-        $.ajax({
-            type: 'PUT',
-            url: postUrl,
-            dataType: 'json',
-            data: {
-                type: types.memo,
-                done: this.checked
-            },
-            success: function(response){
-                console.log("successo");
-            },
-        });
+    $(document).ready(function() {
         
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $('.done-checkbox').on('change', function(e){
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            const post_id = this.dataset.id;
+            const postUrl = window.location.href + '/posts/' + post_id;
+            const types = {
+                memo: "memo",
+                shoplist: "shoplist"
+            };
+            $.ajax({
+                type: 'PUT',
+                url: postUrl,
+                dataType: 'json',
+                data: {
+                    type: types.memo,
+                    done: this.checked
+                },
+                success: function(response){
+                    if(e.target.checked) {
+                        e.target.title = "{{__('home.post.todo-tooltip')}}";
+                        $('#post-' + post_id + ' > .card')[0].classList.remove('bg-white');
+                        $('#post-' + post_id + ' > .card')[0].classList.add('bg-light','text-muted');
+                    } else {
+                        e.target.title = "{{__('home.post.done-tooltip')}}";
+                        $('#post-' + post_id + ' > .card')[0].classList.remove('bg-light','text-muted');
+                        $('#post-' + post_id + ' > .card')[0].classList.add('bg-white');
+                    }
+                },
+            });
+            
+        });
+
+        $('.delete-post-btn').on('click', function(event){
+            jQuery.noConflict();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            const postId = $('#delete-post-modal').attr('post_id');
+            const groupUrl = window.location.href;
+            const postUrl = groupUrl + '/posts/' + postId;
+
+            $.ajax({
+                type: 'DELETE',
+                url: postUrl,
+                dataType: 'json',
+                success: function(response){
+                    let post_id = '#post-' + postId;
+                    $(post_id).remove();
+                    window.location.href = groupUrl;
+                },
+            });     
+        });
+
+        $('.remove-post-btn').on('click', function(event){
+            var button = $(event.target).closest('.remove-post-btn');
+            var post_id = button.data('id'); // Extract info from data-* attributes
+            $('#delete-post-modal').attr('post_id', post_id);
+        });
+
     });
 
-    $('.destroy-btn').on('click', function(event){
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        const postId = this.dataset.id;
-        const postUrl = window.location.href + '/posts/' + postId;
-        $.ajax({
-            type: 'DELETE',
-            url: postUrl,
-            dataType: 'json',
-            success: function(response){
-                let post_id = '#post-' + postId;
-                $(post_id).remove();
-            },
-        });
-        
-    });
 </script>
 

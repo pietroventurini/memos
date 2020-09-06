@@ -10,6 +10,12 @@ use App\Item;
 
 class ShoplistController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('auth');
+        $this->middleware('group');
+    }
+
     public function store(Request $request) {
         $title = $request[2]['value'];
         $expires_at = $request[3]['value'];

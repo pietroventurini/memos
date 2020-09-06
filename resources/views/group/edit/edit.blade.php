@@ -64,13 +64,33 @@
                         </form>
 
                         
-                        <button class="btn btn-danger float-right btn-lg m-1" id="destroy"> {{__('home.delete')}} </button>
+                        <button type="button" class="btn btn-danger float-right btn-lg m-1" data-toggle="modal" data-target="#delete-group-modal"> {{__('home.delete')}} </button>
                         <a class="btn btn-secondary float-right btn-lg m-1" href="{{route('groups.show', ['group' => $group->id])}}" role="button"> {{__('home.cancel')}} </a>
 
                     </div>
 
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-group-modal" tabindex="-1" role="dialog" aria-labelledby="delete-group-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="delete-group-modal-label">{{__('home.group.delete')}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {{__('home.group.delete-msg') . ' ' . $group->name . '?'}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('home.cancel')}}</button>
+            <button type="button" class="btn btn-danger" id="destroy">{{__('home.delete')}}</button>
+        </div>
         </div>
     </div>
 </div>
@@ -162,7 +182,8 @@
                     window.location.href = "/home";
                 },
                 error: function(response) {
-                    window.location.href = "/home";
+                    $('#delete-group-modal').modal('dispose')
+                    //window.location.href = "/home";
                 }
             })
         })

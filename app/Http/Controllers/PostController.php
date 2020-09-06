@@ -12,6 +12,8 @@ class PostController extends Controller
 {
     public function __construct() 
     {
+        $this->middleware('auth');
+        $this->middleware('group');
         $this->middleware('post.creator',['only' => ['destroy']]);
     }
 

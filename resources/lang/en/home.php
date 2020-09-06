@@ -31,6 +31,8 @@ return [
     ],
     'group' => [
         'create' => 'Create a new group',
+        'delete' => 'Delete group',
+        'delete-msg' => 'Are you sure you want to delete',
         'deleted' => 'Group has been deleted',
         'name' => [
             'missing' => 'Group name is missing'
@@ -45,6 +47,8 @@ return [
 
     'post' => [
         'creator' => 'Created by',
+        'delete' => 'Delete post',
+        'delete-msg' => 'Are you sure you want to delete this post?',
         'deleted' => 'Post has been deleted',
         'expires' => 'Expires on',
         'forbidden' => 'User is not the creator of the post',

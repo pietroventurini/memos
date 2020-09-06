@@ -1,6 +1,6 @@
 <ul class="list-group list-group-flush list-group-scroll list-shoplist" data-shoplist_id="{{$post->postable_id}}">
     @foreach($post->postable->items as $item)
-        <li class="list-group-item d-flex justify-content-between align-items-center {{$item->pivot->checked ? 'item-disabled' : ''}}">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent {{$item->pivot->checked ? 'item-disabled' : ''}}">
             <div>
                 {{$item->name}}
                 <span class="badge badge-secondary badge-pill ml-1">{{$item->pivot->quantity}}</span>
