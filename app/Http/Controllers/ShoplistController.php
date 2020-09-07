@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Shoplist;
 use App\Item;
+use App\Group;
 
 
 class ShoplistController extends Controller
@@ -70,5 +71,53 @@ class ShoplistController extends Controller
         $shoplist->items->find($item_id)->pivot->update(['checked' => $checked]);
         
         return response()->json(['message' => 'Checked status has been updated'], 200); 
+    }
+
+    protected function getAvailableItems($shoplist) {
+        return Item::all()->diff($shoplist->items);
+    }
+
+    public function edit(Request $request) {
+        $shoplist_id = $request->route('shoplist');
+        $shoplist = Shoplist::find($shoplist_id);
+        return view('post/edit/shoplist')->with([
+            'group_id' => $request->route('group'),
+            'post' => $shoplist->post,
+            'shoplist' => $shoplist,
+            'available_items' => self::getAvailableItems($shoplist),
+        ]);
+    }
+
+    public function update(Request $request) {
+        $group_id = $request->route('group');
+        $shoplist_id = $request->route('shoplist');
+        $shoplist = Shoplist::find($shoplist_id);
+        
+        // items in the shoplist
+        $items = $request->input('items');
+        
+        $id_items = array_column($items, 'id');
+        // detach items that are not anymore in the list
+        // FIXME: sync rimuove gli elementi non presenti e aggiunge quelli extra
+        // quindi bisogna passare a sync solo quelli vecchi che rimangono (nuovi intersezione vecchi)
+        $shoplist->items()->sync($id_items);
+
+        $old_items = $shoplist->items()->get(['id','quantity']);
+
+        // update items whose quantity has changed
+        foreach ($items as $item) {
+            foreach($old_items as $old_item) {
+                if ($item['id'] == $old_item['id'] && $item['quantity'] != $old_item->pivot['quantity']) {
+                    $shoplist->items()->updateExistingPivot($item['id'], ['user_id' => auth()->id(), 'quantity' => $item['quantity']]);
+                }
+            } 
+        }
+
+        // add new items
+        //dd(Item::whereIn('id', $id_items)->diff($shoplist->items));
+
+
+
+
     }
 }

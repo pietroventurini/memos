@@ -45,3 +45,7 @@ Route::get('/groups/{group}/posts/shoplists/create', 'ShoplistController@create'
 Route::post('/groups/{group}/posts/shoplists', 'ShoplistController@store')->name('groups.shoplists.store');
 Route::put('/groups/{group}/posts/shoplists/{shoplist}/checkItem', 'ShoplistController@checkItem')->name('groups.shoplists.checkItem');
 
+
+Route::get('/groups/{group}/posts/shoplists/{shoplist}/edit', 'ShoplistController@edit')->name('groups.shoplists.edit');
+Route::post('/groups/{group}/posts/shoplists/{shoplist}', 'ShoplistController@update')->name('groups.shoplists.update');
+

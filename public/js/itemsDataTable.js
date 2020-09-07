@@ -9,10 +9,10 @@ const removeBtn = "<button class='btn btn-outline-danger remove-item-btn' type='
                     + "</button>";
 
 function addHiddenItemInput(id, quantity) {
-    let input_tag = "<input type='hidden' name='shoplist_items[]' value='" 
-                + "{id: '" + id + "'}"
-                + "{quantity: '" + quantity + "'}"
-                + "' />";
+    let input_tag = "<input type='hidden' name='shoplist_items[]' value=" 
+                + '{"id":' + id + ','
+                + '"quantity":' + quantity + '}'
+                + '" />';
     return input_tag
 } 
 
@@ -24,6 +24,14 @@ function buildQuantityInput(quantity) {
     return element;
 }
 
+function objectifyForm(formArray) {
+    var objData = {};
+    $.map(formArray, function(n,i) {
+        objData[n['name']] = n['value']
+    });
+    return objData;
+}
+
 function retrieveShoplistData(table) {
     let items = [];
     table.rows().every(function(idx) {
@@ -33,11 +41,12 @@ function retrieveShoplistData(table) {
         let item = {id: item_id, quantity: quantity};
         items.push(item);
     });
-    return { name: 'items', value: items};
+    return { name: "items", value: items};
 }
 
 $(document).ready(function() {
     $.noConflict();
+
     $("input[type='number']").inputSpinner();
     var items_table = $('#items_table').DataTable({
         "columnDefs": [
@@ -103,5 +112,24 @@ $(document).ready(function() {
                window.location.replace(response);
             }
        });
+    });
+
+    // è uguale al precedente, ne basta uno
+    $('#edit-shoplist-form').submit(function(e) {
+        e.preventDefault();
+        let form = $(this);
+        let serializedData = objectifyForm(form.serializeArray());
+        let extra_data = retrieveShoplistData(shoplist_table);
+        serializedData.items = extra_data.value;
+        
+        $.ajax({
+            url : form.attr('action'),
+            type: form.attr('method'),
+            contentType: "application/json",
+            data: JSON.stringify(serializedData),
+            success: function(response) {
+                console.log(response);
+            }
+        });
     });
 } );
