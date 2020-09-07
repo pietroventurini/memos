@@ -92,32 +92,41 @@ class ShoplistController extends Controller
         $group_id = $request->route('group');
         $shoplist_id = $request->route('shoplist');
         $shoplist = Shoplist::find($shoplist_id);
+
+        if($shoplist == null) {
+            return response()->json(['message' => 'Shoplist not found',
+                                    'redirect' => route('groups.show', ['group' => $group_id])], 404);
+        }
         
         // items in the shoplist
         $items = $request->input('items');
-        
         $id_items = array_column($items, 'id');
+        // ids of the removed items
+        $removed_id_items = array_diff($shoplist->items()->pluck('id')->toArray(), $id_items);
         // detach items that are not anymore in the list
-        // FIXME: sync rimuove gli elementi non presenti e aggiunge quelli extra
-        // quindi bisogna passare a sync solo quelli vecchi che rimangono (nuovi intersezione vecchi)
-        $shoplist->items()->sync($id_items);
+        $shoplist->items()->detach($removed_id_items);
 
-        $old_items = $shoplist->items()->get(['id','quantity']);
-
-        // update items whose quantity has changed
         foreach ($items as $item) {
-            foreach($old_items as $old_item) {
-                if ($item['id'] == $old_item['id'] && $item['quantity'] != $old_item->pivot['quantity']) {
+            $old_item = $shoplist->items()->find($item['id']);
+            if ($old_item == null) {
+                // insert new item
+                DB::table('item_shoplist_user')->insert([
+                    'item_id' => $item['id'],
+                    'shoplist_id' => $shoplist->id,
+                    'user_id' => auth()->id(),
+                    'quantity' => $item['quantity'],
+                    'checked' => '0',
+                    'created_at' => new \Datetime(),
+                    'updated_at' => new \Datetime()
+                ]);
+            } else {
+                // update old item (user, quantity and updated_at)
+                if ($item['quantity'] != $old_item->pivot->quantity)
                     $shoplist->items()->updateExistingPivot($item['id'], ['user_id' => auth()->id(), 'quantity' => $item['quantity']]);
-                }
-            } 
+            }
         }
 
-        // add new items
-        //dd(Item::whereIn('id', $id_items)->diff($shoplist->items));
-
-
-
-
+        return response()->json(['message' => 'Shoplist has been updated',
+                                'redirect' => route('groups.show', ['group' => $group_id])], 200);
     }
 }

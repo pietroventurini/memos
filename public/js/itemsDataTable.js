@@ -121,15 +121,18 @@ $(document).ready(function() {
         let serializedData = objectifyForm(form.serializeArray());
         let extra_data = retrieveShoplistData(shoplist_table);
         serializedData.items = extra_data.value;
-        
+
         $.ajax({
             url : form.attr('action'),
             type: form.attr('method'),
             contentType: "application/json",
             data: JSON.stringify(serializedData),
             success: function(response) {
-                console.log(response);
-            }
+                window.location.replace(response.redirect); 
+            },
+            error: function(response) {
+                window.location.replace(response.redirect);
+            },
         });
     });
 } );

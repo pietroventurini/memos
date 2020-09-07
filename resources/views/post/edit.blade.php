@@ -15,7 +15,7 @@
                                 <div class="form-group col-md-6 mb-3">
                                     <label for="title">{{ __('home.post.title') }}</label>
                                     <input type="text" class="form-control" id="title" name="title" 
-                                            value={{$post->title}} autocomplete="off" required>
+                                            value="{{$post->title}}" autocomplete="off" required>
                                 </div>
                                 <div class="form-group col-md-6 mb-3">
                                     <label for="expires_at">{{ __('home.post.expires') }}</label>
