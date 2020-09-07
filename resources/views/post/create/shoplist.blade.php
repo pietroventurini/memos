@@ -11,7 +11,7 @@
 @section('specific_data') 
 
 <div class="form-group">
-    <label for="items_table">{{__('home.shoplist.items-available')}}</label>
+    <label class="attr-label" for="items_table">{{__('home.shoplist.items-available')}}</label>
     <table class="table table-hover" id="items_table">
         <thead class="thead-dark">
             <tr>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="form-group">
-    <label for="shoplist_table">{{__('home.shoplist.items-selected')}}</label>
+    <label class="attr-label" for="shoplist_table">{{__('home.shoplist.items-selected')}}</label>
     <table class="table table-hover" id="shoplist_table">
         <thead class="thead-dark">
             <tr>

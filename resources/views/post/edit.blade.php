@@ -8,21 +8,23 @@
             <div class="card">
                     <h5 class="card-header">@yield('title')</h5>
                     <div class="card-body">
-                        <form action="@yield('update_route_name')" {{$post->postable_type == 'App\Shoplist' ? 'id=edit-shoplist-form' : ''}} method="POST">
+                        <form class="edit-post-form" action="@yield('update_route_name')" {{$post->postable_type == 'App\Shoplist' ? 'id=edit-shoplist-form' : ''}} method="POST">
                             @csrf
                             <input type="hidden" id="type" name="type" value="{{$post->type}}">
-                            <div class="form-row">
-                                <div class="form-group col-md-6 mb-3">
-                                    <label for="title">{{ __('home.post.title') }}</label>
-                                    <input type="text" class="form-control" id="title" name="title" 
-                                            value="{{$post->title}}" autocomplete="off" required>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label class="attr-label" for="title">{{ __('home.post.title') }}</label>
+                                        <input type="text" class="form-control" id="title" name="title" 
+                                                value="{{$post->title}}" autocomplete="off" required
+                                                {{auth()->id() != $post->user->id ? "readonly" : ""}}>
+                                    </div>
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label class="attr-label" for="expires_at">{{ __('home.post.expires') }}</label>
+                                        <input type="date" class="form-control" id="expires_at" name="expires_at" 
+                                                value={{$post->expires_at}} autocomplete="off" required
+                                                {{auth()->id() != $post->user->id ? "readonly" : ""}}>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6 mb-3">
-                                    <label for="expires_at">{{ __('home.post.expires') }}</label>
-                                    <input type="date" class="form-control" id="expires_at" name="expires_at" 
-                                            value={{$post->expires_at}} autocomplete="off" required>
-                                </div>
-                            </div>
 
                             @yield('specific_data')
 
@@ -32,12 +34,13 @@
                             </div>
                         </form>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <script type="application/javascript">
 

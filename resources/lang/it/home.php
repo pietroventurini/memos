@@ -12,6 +12,7 @@ return [
     |
     */  
 
+    'add' => 'Aggiungi',
     'cancel' => 'Annulla',
     'create' => 'Crea',
     'delete' => 'Elimina',
@@ -20,6 +21,7 @@ return [
     'name' => 'Nome',
     'members' => 'Membri del gruppo',
     'my_groups' => 'I miei gruppi',
+    'language' => 'Lingua',
     'forbidden' => [
         'group' => 'Non appartieni a questo gruppo',
         'admin' => "Non sei l'amministratore del gruppo",
@@ -66,6 +68,8 @@ return [
         'create' => 'Crea una nuova lista della spesa',
         'items-available' => 'Elementi disponibili',
         'items-selected' => 'Elementi selezionati',
+        'edit' => 'Modifica la lista della spesa',
+        'add-item' => 'Crea un nuovo elemento',
     ],
 
 

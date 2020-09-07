@@ -14,12 +14,12 @@
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">{{ __('home.name') }}</label>
+                                    <label class="attr-label" for="validationCustom01">{{ __('home.name') }}</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="name" 
                                             value="{{$group->name}}" aria-describedby="nameHelpBlock" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom02">{{ __('home.description') }}</label>
+                                    <label class="attr-label" for="validationCustom02">{{ __('home.description') }}</label>
                                     <input type="text" class="form-control" id="validationCustom02" name="description" 
                                             value="{{$group->description}}" aria-describedby="descHelpBlock" autocomplete="off">
                                 </div>
@@ -29,7 +29,7 @@
                             <!-- Table of group members -->
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label> {{ __('home.members') }} </label>
+                                    <label class="attr-label"> {{ __('home.members') }} </label>
                                     @include('group.edit.members')
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                             <!-- Add a new member -->
                             <div class="form-row">
                                 <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                                    <label for="validationCustom03"> {{ __('home.group.member.new') }} </label>
+                                    <label class="attr-label" for="validationCustom03"> {{ __('home.group.member.new') }} </label>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="email@address.com" id="usr_email" 
                                                 name="usr_email" aria-describedby="memberHelpBlock">

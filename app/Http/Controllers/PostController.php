@@ -63,22 +63,17 @@ class PostController extends Controller
         return $post;
     }
 
-    /*FIXME
-    public function create(Request $request) {
-        $group_id = $request->route('group');
-        if(!$request->filled('type')) {
-            //404
-        }
-        $type = $request->input('type');
-        if($type == 'memo')
-            return view('post/create/memo')->with(['group_id' => $group_id, 'type' => 'memo']);
-        if ($type == 'shoplist')
-            return view('post/create/shoplist')->with(['group_id' => $group_id,
-                                                        'items'=> Item::all(),
-                                                        'type' => 'shoplist']);
-        // return bad formatting
-            
+    public function updateInfo($group_id, $post_id, $title, $expires_at) {
+        $post = Post::find($post_id);
+        if ($post === null) 
+            return response()->json(['message' => __('home.post.not-found')], 404);
+        if ($post->user->id != auth()->id())
+            return response()->json(['message' => __('home.post.forbidden')], 401);
+        
+        $post->title = $title;
+        $post->expires_at = $expires_at;
+        $post->save();
+        return response()->json(['message' => "OK"], 200);
     }
-    */
 
 }

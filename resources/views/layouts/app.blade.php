@@ -51,6 +51,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -77,6 +78,13 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <!-- Language flags -->
+                                    <h6 class="dropdown-header">{{__('home.language')}}</h6>
+                                    <div class="list-group list-group-horizontal">
+                                        <a class="list-group-item list-group-item-action" href="{{ route('lang.set', ['lang' => 'en']) }}"> <img src="{{ asset('img/flags/en.png') }}" alt="EN flag" width="30" class="rounded"> </a>
+                                        <a class="list-group-item list-group-item-action" href="{{ route('lang.set', ['lang' => 'it']) }}"> <img src="{{ asset('img/flags/it.png') }}" alt="EN flag" width="24" class="rounded"> </a>
+                                    </div>
                                 </div>
                             </li>
                         @endguest

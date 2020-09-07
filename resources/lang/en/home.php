@@ -12,6 +12,7 @@ return [
     |
     */
 
+    'add' => 'Add',
     'cancel' => 'Cancel',
     'create' => 'Create',
     'delete' => 'Delete',
@@ -20,6 +21,7 @@ return [
     'name' => 'Name',
     'members' => 'Group members',
     'my_groups' => 'My groups',
+    'language' => 'Language',
     'forbidden' => [
         'group' => 'You do not belong to this group',
         'admin' => 'You are not the administrator of this group',
@@ -66,6 +68,8 @@ return [
         'create' => 'Create a new shopping list',
         'items-available' => 'Available items',
         'items-selected' => 'Selected items',
+        'edit' => 'Edit the shoplist',
+        'add-item' => 'Create a new item',
     ],
 
     'item' => [

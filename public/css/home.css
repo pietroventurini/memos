@@ -52,3 +52,7 @@ input[type=checkbox].done-checkbox {
 .item-disabled {
 	color:#acacac;
 }
+
+label.attr-label {
+	font-size: large;
+}

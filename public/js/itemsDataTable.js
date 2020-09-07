@@ -13,7 +13,7 @@ function addHiddenItemInput(id, quantity) {
                 + '{"id":' + id + ','
                 + '"quantity":' + quantity + '}'
                 + '" />';
-    return input_tag
+    return input_tag;
 } 
 
 
@@ -51,14 +51,19 @@ $(document).ready(function() {
     var items_table = $('#items_table').DataTable({
         "columnDefs": [
             { className: "d-none d-sm-table-cell", "targets": [ 1, 2 ] },
-            { className: "quantity-cell", "targets" : [ 3 ]}
-          ]
+            { className: "quantity-cell", "targets" : [ 3 ], "orderable": false}
+          ],
+        "lengthChange": false,
+        "pageLength": 6,
     });
     var shoplist_table = $('#shoplist_table').DataTable({
         "columnDefs": [
             { className: "d-none d-sm-table-cell", "targets": [ 1, 2 ] },
-            { className: "quantity-cell", "targets" : [ 3 ]}
-          ]
+            { className: "quantity-cell", "targets" : [ 3 ],  "orderable": false},
+            {"targets": [ 4 ], "orderable": false},
+          ],
+        "lengthChange": false,
+        "pageLength": 6,
     });
 
     /**

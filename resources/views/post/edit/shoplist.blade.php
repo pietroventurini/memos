@@ -10,8 +10,10 @@
 
 @section('specific_data') 
 
-<div class="form-group">
-    <label for="items_table">{{__('home.shoplist.items-available')}}</label>
+
+<div class="form-group mt-3">
+    <label class="attr-label" for="items_table">{{__('home.shoplist.items-available')}}</label>
+    <a class="btn btn-primary " href="{{ route('items.create', ['group' => $group_id, 'shoplist' => $shoplist->id]) }}" role="button">{{__('home.shoplist.add-item')}}</a>
     <table class="table table-hover" id="items_table">
         <thead class="thead-dark">
             <tr>
@@ -36,8 +38,9 @@
     </table>
 </div>
 
-<div class="form-group">
-    <label for="shoplist_table">{{__('home.shoplist.items-selected')}}</label>
+
+<div class="form-group mt-4">
+    <label class="attr-label" for="shoplist_table">{{__('home.shoplist.items-selected')}}</label>
     <table class="table table-hover" id="shoplist_table">
         <thead class="thead-dark">
             <tr>

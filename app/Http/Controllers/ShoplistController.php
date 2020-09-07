@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Shoplist;
 use App\Item;
 use App\Group;
+use App\Category;
 
 
 class ShoplistController extends Controller
@@ -30,7 +31,7 @@ class ShoplistController extends Controller
         $post->postable_type = 'App\Shoplist';
         $post->save();
         // FILL SHOPLIST WITH ITEMS
-        $items = $request[6]['value'];
+        $items = $request[4]['value'];
         //$items_ids = array_column($items, 'id');
         $user_id = auth()->id();
         foreach($items as $item_to_store) {
@@ -106,6 +107,14 @@ class ShoplistController extends Controller
         // detach items that are not anymore in the list
         $shoplist->items()->detach($removed_id_items);
 
+        // update title and expires_at
+        if($shoplist->post->user->id == auth()->id() && $request->has('title') && $request->has('expires_at')) {
+            app('App\Http\Controllers\PostController')->updateInfo($group_id, 
+                                                                    $shoplist->post->id, 
+                                                                    $request->input('title'),
+                                                                    $request->input('expires_at'));
+        }
+
         foreach ($items as $item) {
             $old_item = $shoplist->items()->find($item['id']);
             if ($old_item == null) {
@@ -128,5 +137,6 @@ class ShoplistController extends Controller
 
         return response()->json(['message' => 'Shoplist has been updated',
                                 'redirect' => route('groups.show', ['group' => $group_id])], 200);
+
     }
 }
