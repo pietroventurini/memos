@@ -37,7 +37,7 @@
                             <!-- Add a new member -->
                             <div class="form-row">
                                 <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                                    <label class="attr-label" for="validationCustom03"> {{ __('home.group.member.new') }} </label>
+                                    <label class="attr-label"> {{ __('home.group.member.new') }} </label>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="email@address.com" id="usr_email" 
                                                 name="usr_email" aria-describedby="memberHelpBlock">
@@ -162,7 +162,6 @@
 
 
     $(document).ready(function() {
-        
 
         $('#add_member').click(function() {
             validate() 

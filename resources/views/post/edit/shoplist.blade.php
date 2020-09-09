@@ -12,15 +12,21 @@
 
 
 <div class="form-group mt-3">
-    <label class="attr-label" for="items_table">{{__('home.shoplist.items-available')}}</label>
-    <a class="btn btn-primary " href="{{ route('items.create', ['group' => $group_id, 'shoplist' => $shoplist->id]) }}" role="button">{{__('home.shoplist.add-item')}}</a>
+    <div class="row mb-3">
+        <div class="col-sm">
+            <label class="attr-label" for="items_table">{{__('home.shoplist.items-available')}}</label>
+        </div>
+        <div class="col-sm">
+            <a class="btn btn-primary float-right" href="{{ route('items.create', ['group' => $group_id, 'shoplist' => $shoplist->id]) }}" role="button">{{__('home.shoplist.add-item')}}</a>
+        </div>
+    </div>
     <table class="table table-hover" id="items_table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">{{ __('home.item.name') }}</th>
                 <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.description') }}</th>
-                <th scope="col">{{ __('home.item.category') }}</th>
-                <th scope="col">{{ __('home.item.quantity') }}</th>
+                <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.category') }}</th>
+                <th scope="col quantity-col">{{ __('home.item.quantity') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +45,8 @@
 </div>
 
 
+
+
 <div class="form-group mt-4">
     <label class="attr-label" for="shoplist_table">{{__('home.shoplist.items-selected')}}</label>
     <table class="table table-hover" id="shoplist_table">
@@ -46,8 +54,8 @@
             <tr>
                 <th scope="col">{{ __('home.item.name') }}</th>
                 <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.description') }}</th>
-                <th scope="col">{{ __('home.item.category') }}</th>
-                <th scope="col">{{ __('home.item.quantity') }}</th>
+                <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.category') }}</th>
+                <th scope="col quantity-col">{{ __('home.item.quantity') }}</th>
                 <th scope="col">{{ __('home.item.remove') }}</th>
             </tr>
         </thead>

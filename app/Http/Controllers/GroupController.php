@@ -19,7 +19,6 @@ class GroupController extends Controller
     public function show($group_id) {
         $user_id = auth()->id();
 
-        // SISTEMARE
         $group = Group::find($group_id);
         return view('group/group')->with('group', $group);
     }

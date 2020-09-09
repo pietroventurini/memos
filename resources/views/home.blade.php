@@ -20,8 +20,8 @@
                         @foreach($groups as $group)
                             <a style="display:block" href=" {{ route('groups.show', ['group' => $group->id]) }}">
                                 <div class="col mb-4">
-                                    <div class="card">
-                                    <img src="img/group_card_header.jpg" class="card-img-top card-img-adapt-size" alt="Group card header">
+                                    <div class="card group-card-shadow">
+                                    <img src="img/group_card_header" class="card-img-top card-img-adapt-size" alt="Group card header">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $group->name }}</h5>
                                         <p class="card-text"> {{ $group->description }}</p>

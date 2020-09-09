@@ -32,7 +32,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark  shadow-sm">
             <div class="container">
 
                 <a class="navbar-brand" href="{{ route('home') }}">
@@ -99,7 +99,7 @@
 
         @if($errors->any())
             <div class="container text-center">
-                <div class="alert alert-size alert-warning alert-dismissible fade show" role="alert"> 
+                <div class="alert alert-size alert-danger alert-dismissible fade show" role="alert"> 
                     <strong>Error:</strong> {{ $errors->first() }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <!-- POSTS -->
                         <div class="row row-cols-1 row-cols-md-2">
-                        @foreach($group->posts as $post)
+                        @foreach($group->posts()->orderBy('updated_at','desc')->get() as $post)
                             @include('post.post')
                         @endforeach
                     </div>

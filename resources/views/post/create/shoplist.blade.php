@@ -18,7 +18,7 @@
                 <th scope="col">{{ __('home.item.name') }}</th>
                 <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.description') }}</th>
                 <th scope="col">{{ __('home.item.category') }}</th>
-                <th scope="col">{{ __('home.item.quantity') }}</th>
+                <th scope="col quantity-col">{{ __('home.item.quantity') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
                 <th scope="col">{{ __('home.item.name') }}</th>
                 <th scope="col" class="d-none d-sm-table-cell">{{ __('home.item.description') }}</th>
                 <th scope="col">{{ __('home.item.category') }}</th>
-                <th scope="col">{{ __('home.item.quantity') }}</th>
+                <th scope="col quantity-col">{{ __('home.item.quantity') }}</th>
                 <th scope="col">{{ __('home.item.remove') }}</th>
             </tr>
         </thead>
